@@ -15,6 +15,44 @@ tree * createNewNode (int data) {
     return temp;
 }
 
+tree * insert(tree * root , int data) {
+
+    if(root == NULL) {
+        tree * temp = createNewNode(data);
+        printf("%d insertion succesfull.\n",data);
+        return temp;
+    }
+
+
+
+
+    tree * head = root;
+    tree * prev = NULL;
+    while(root != NULL) {
+        prev = root;
+        if(data == root -> data) {
+            printf("Can't insert %d, because it's already inserted.\n", data);
+            return head;
+        }
+        else if(data > root -> data) {
+            root = root -> right;
+        }
+        else root = root -> left;
+    }
+    tree * node = createNewNode(data);
+    if(data < prev -> data) {
+        prev -> left = node;
+    }
+    else prev -> right = node;
+    printf("%d insertion succesful.\n",data);
+    return head;
+}
+
+
+
+
+/*
+
 tree * insert(tree * root, int data) {
 
     if(root == NULL) {
@@ -27,6 +65,8 @@ tree * insert(tree * root, int data) {
 
     return root;
 }
+
+    */
 
 void InOrderTraversar(tree * root) {
     if(root != NULL) {
@@ -47,6 +87,8 @@ int main() {
     root = insert(root,5);
     root = insert(root,10);
     root = insert(root,100);
-    root = insert(root,12);
+    root = insert(root,1);
+    root = insert(root,15);
+    root = insert(root,5);
     InOrderTraversar(root);
 }
